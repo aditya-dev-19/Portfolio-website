@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-dark: #0a0a0a;
+  --color-primary-green: #00ff88;
+  --color-sec-slate: #1e2130;
+  --color-text-body: #e2e8f0;
+  --color-border-glow: rgba(255, 255, 255, 0.06);
+
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Geist", sans-serif;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  html {
+    overflow-x: clip;
+    overflow-y: auto;
+  }
+
+  body {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-mono);
+    color: white;
+  }
+}
+
+@layer utilities {
+
+  /* 
+   * .reveal properties removed because App.jsx uses Tailwind's opacity-100/opacity-0 
+   * and translate utilities directly via IntersectionObserver.
+   */
+  .reveal {
+    /* Kept purely as a selector for querySelectorAll */
+  }
+
+  /* Marquee animation */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+
+  /* Pause animation on hover */
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  /* Hide scrollbar for cleaner UI where needed */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+  }
+
+  .border-glow:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    border-color: var(--color-primary-green);
+  }
+
+  /* Scanline texture */
+  .scanline {
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0) 50%,
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(0, 0, 0, 0.2));
+    background-size: 100% 4px;
+  }
+
+  /* Blinking cursor */
+  .cursor-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+  }
+
+  /* CRT Flicker Effect */
+  @keyframes crtFlicker {
+    0% {
+      opacity: 0.95;
+    }
+
+    5% {
+      opacity: 0.85;
+    }
+
+    10% {
+      opacity: 0.95;
+    }
+
+    15% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .animate-crt-flicker {
+    animation: crtFlicker 4s infinite;
+  }
+
+  /* Neon Border Container */
+  .neon-border-container {
+    box-shadow:
+      0 0 5px rgba(0, 255, 136, 0.1),
+      inset 0 0 10px rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+  }
+}
