@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Github, ExternalLink, Linkedin, Mail, Terminal, Code2, ChevronRight, Briefcase, GitCommit } from 'lucide-react';
 
-const navLinks = ['About', 'Projects', 'Experience', 'Certifications', 'Contact'];
+const navLinks = ['About', 'Experience', 'Projects', 'Certifications', 'Contact'];
 
 const techStack = [
   'Python', 'JavaScript (ES6+)', 'ReactJS', 'NextJS',
@@ -74,7 +74,6 @@ const useScrollReveal = () => {
   }, []);
 };
 
-import CommandPalette from './components/CommandPalette';
 import BootSequence from './components/BootSequence';
 import ProjectDetails from './components/ProjectDetails';
 
@@ -145,7 +144,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[var(--color-bg-dark)] text-[var(--color-text-body)] selection:bg-[var(--color-primary-green)] selection:text-black pb-10 relative">
-      <CommandPalette />
       <ProjectDetails project={selectedProject} onClose={() => setSelectedProject(null)} />
 
       {/* Sticky Navbar */}
@@ -165,9 +163,6 @@ function App() {
                 <span className="absolute -bottom-2 left-0 w-0 h-px bg-[var(--color-primary-green)] transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
-            <div className="flex items-center gap-2 text-gray-500 border border-[var(--color-border-glow)] px-2 py-1 bg-black/20 ml-4 hidden lg:flex">
-              <span className="text-[10px]">CMD+K</span>
-            </div>
           </div>
         </div>
       </nav>
@@ -201,15 +196,15 @@ function App() {
                 </span>
                 <div className="absolute inset-0 h-full w-0 bg-[var(--color-primary-green)] transition-all duration-300 ease-out group-hover:w-full"></div>
               </a>
-              <button
-                onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
+              <a
+                href="/Aditya Nair's resume.pdf"
+                download="Aditya Nair's resume.pdf"
                 className="px-6 py-4 border border-gray-600 text-gray-400 hover:border-white hover:text-white transition-all flex items-center hover:bg-white/5 tracking-widest uppercase relative group"
-                title="Press CMD+K or CTRL+K anywhere"
+                title="Download Resume"
               >
                 [FETCH_RESUME]
-                <span className="absolute -top-3 -right-2 bg-[var(--color-primary-green)] text-black text-[9px] px-1.5 py-0.5 font-bold animate-pulse">CMD+K</span>
-              </button>
-              <a href="#contact" className="px-6 py-4 border border-transparent text-gray-500 hover:text-gray-300 transition-all flex items-center hover:bg-white/5 tracking-widest uppercase">
+              </a>
+              <a href="#contact" className="px-6 py-4 border border-gray-600 text-gray-400 hover:border-white hover:text-white transition-all flex items-center hover:bg-white/5 tracking-widest uppercase relative group">
                 [CONTACT]
               </a>
             </div>
@@ -320,11 +315,73 @@ function App() {
           </div>
         </section>
 
+        {/* Experience Section */}
+        <section id="experience" className="py-24 reveal opacity-0 translate-y-10 transition-all duration-700 ease-out relative">
+          <div className="absolute top-24 left-4 text-[10px] font-mono text-[var(--color-border-glow)] select-none whitespace-nowrap hidden lg:block -rotate-90 origin-left">TIMELINE_TRACED</div>
+
+          <div className="mb-16 border-b border-[var(--color-border-glow)] pb-4 flex items-end justify-between">
+            <h2 className="text-xl sm:text-3xl font-mono text-gray-400 uppercase tracking-widest flex items-center group">
+              <span className="text-[var(--color-primary-green)]/50 mr-4 text-xl">{"02"}</span>
+              <span className="text-[var(--color-primary-green)] mr-3 transition-transform group-hover:translate-x-1">{"// "}</span> EXPERIENCE
+            </h2>
+          </div>
+
+          <div className="pl-6 md:pl-16 max-w-4xl relative">
+            {/* Master timeline line */}
+            <div className="absolute top-0 bottom-0 left-[23px] md:left-[63px] w-px bg-gradient-to-b from-transparent via-[var(--color-border-glow)] to-transparent z-0"></div>
+
+            <div className="space-y-16 relative z-10">
+              {experiences.map((exp, idx) => (
+                <div key={idx} className="relative group reveal opacity-0 translate-x-4 transition-all duration-500" style={{ transitionDelay: `${idx * 150}ms` }}>
+
+                  {/* Timeline dot */}
+                  <div className="absolute -left-6 top-6 w-12 h-12 rounded-full bg-[#0A0C10] border border-[var(--color-border-glow)] group-hover:border-[var(--color-primary-green)] transition-all flex items-center justify-center z-10 shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_15px_rgba(0,255,136,0.2)]">
+                    <div className="w-3 h-3 rounded-full bg-gray-600 group-hover:bg-[var(--color-primary-green)] group-hover:shadow-[0_0_8px_rgba(0,255,136,1)] transition-colors"></div>
+                  </div>
+
+                  <div className="ml-12 bg-[#0A0C10] border border-[var(--color-border-glow)] p-8 group-hover:border-[var(--color-primary-green)]/40 transition-all duration-500 group-hover:-translate-y-1 relative overflow-hidden">
+                    {/* Corner accent */}
+                    <div className="absolute top-0 right-0 w-8 h-8 font-mono text-xs flex justify-end">
+                      <div className="w-0 h-0 border-t-[32px] border-t-[var(--color-primary-green)]/10 border-l-[32px] border-l-transparent group-hover:border-t-[var(--color-primary-green)]/30 transition-all"></div>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                      <div>
+                        <h3 className="text-xl font-bold text-white font-mono break-words flex items-center">
+                          <Briefcase className="w-5 h-5 mr-3 text-gray-500 group-hover:text-[var(--color-primary-green)] transition-colors" />
+                          <span className="group-hover:text-glow transition-all">{exp.role}</span>
+                        </h3>
+                        <div className="text-[var(--color-primary-green)] font-mono text-sm mt-2 font-bold tracking-widest uppercase">{exp.company}</div>
+                      </div>
+                      <span className="text-xs tracking-widest font-mono text-gray-500 md:ml-4 shrink-0 mt-4 md:mt-0 font-bold group-hover:text-white transition-colors">
+                        {exp.date}
+                      </span>
+                    </div>
+
+                    <p className="text-base text-gray-400 leading-relaxed font-sans mb-6 pb-6 border-b border-dashed border-gray-800">
+                      {exp.description}
+                    </p>
+
+                    <ul className="space-y-3 font-mono text-sm text-gray-400">
+                      {exp.achievements.map((ach, i) => (
+                        <li key={i} className="flex items-start">
+                          <span className="text-[var(--color-primary-green)] mr-3 mt-1 text-[10px]">▶</span>
+                          <span className="leading-relaxed hover:text-[var(--color-primary-green)] transition-colors cursor-crosshair">{ach}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Projects Section */}
         <section id="projects" className="py-24 reveal opacity-0 translate-y-10 transition-all duration-700 ease-out">
           <div className="mb-12 border-b border-[var(--color-border-glow)] pb-4 flex items-end justify-between">
             <h2 className="text-xl sm:text-3xl font-mono text-gray-400 uppercase tracking-widest flex items-center group">
-              <span className="text-[var(--color-primary-green)]/50 mr-4 text-xl">{"02"}</span>
+              <span className="text-[var(--color-primary-green)]/50 mr-4 text-xl">{"03"}</span>
               <span className="text-[var(--color-primary-green)] mr-3 transition-transform group-hover:translate-x-1">{"/* "}</span> PROJECTS <span className="text-[var(--color-primary-green)] ml-3">{" */"}</span>
             </h2>
             <div className="text-xs font-mono text-gray-600 hidden sm:block">{"[ array: " + projects.length + " ]"}</div>
@@ -405,68 +462,6 @@ function App() {
                 </div>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* Experience Section */}
-        <section id="experience" className="py-24 reveal opacity-0 translate-y-10 transition-all duration-700 ease-out relative">
-          <div className="absolute top-24 left-4 text-[10px] font-mono text-[var(--color-border-glow)] select-none whitespace-nowrap hidden lg:block -rotate-90 origin-left">TIMELINE_TRACED</div>
-
-          <div className="mb-16 border-b border-[var(--color-border-glow)] pb-4 flex items-end justify-between">
-            <h2 className="text-xl sm:text-3xl font-mono text-gray-400 uppercase tracking-widest flex items-center group">
-              <span className="text-[var(--color-primary-green)]/50 mr-4 text-xl">{"03"}</span>
-              <span className="text-[var(--color-primary-green)] mr-3 transition-transform group-hover:translate-x-1">{"// "}</span> EXPERIENCE
-            </h2>
-          </div>
-
-          <div className="pl-6 md:pl-16 max-w-4xl relative">
-            {/* Master timeline line */}
-            <div className="absolute top-0 bottom-0 left-[23px] md:left-[63px] w-px bg-gradient-to-b from-transparent via-[var(--color-border-glow)] to-transparent z-0"></div>
-
-            <div className="space-y-16 relative z-10">
-              {experiences.map((exp, idx) => (
-                <div key={idx} className="relative group reveal opacity-0 translate-x-4 transition-all duration-500" style={{ transitionDelay: `${idx * 150}ms` }}>
-
-                  {/* Timeline dot */}
-                  <div className="absolute -left-6 top-6 w-12 h-12 rounded-full bg-[#0A0C10] border border-[var(--color-border-glow)] group-hover:border-[var(--color-primary-green)] transition-all flex items-center justify-center z-10 shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_15px_rgba(0,255,136,0.2)]">
-                    <div className="w-3 h-3 rounded-full bg-gray-600 group-hover:bg-[var(--color-primary-green)] group-hover:shadow-[0_0_8px_rgba(0,255,136,1)] transition-colors"></div>
-                  </div>
-
-                  <div className="ml-12 bg-[#0A0C10] border border-[var(--color-border-glow)] p-8 group-hover:border-[var(--color-primary-green)]/40 transition-all duration-500 group-hover:-translate-y-1 relative overflow-hidden">
-                    {/* Corner accent */}
-                    <div className="absolute top-0 right-0 w-8 h-8 font-mono text-xs flex justify-end">
-                      <div className="w-0 h-0 border-t-[32px] border-t-[var(--color-primary-green)]/10 border-l-[32px] border-l-transparent group-hover:border-t-[var(--color-primary-green)]/30 transition-all"></div>
-                    </div>
-
-                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
-                      <div>
-                        <h3 className="text-xl font-bold text-white font-mono break-words flex items-center">
-                          <Briefcase className="w-5 h-5 mr-3 text-gray-500 group-hover:text-[var(--color-primary-green)] transition-colors" />
-                          <span className="group-hover:text-glow transition-all">{exp.role}</span>
-                        </h3>
-                        <div className="text-[var(--color-primary-green)] font-mono text-sm mt-2 font-bold tracking-widest uppercase">{exp.company}</div>
-                      </div>
-                      <span className="text-xs tracking-widest font-mono text-gray-500 md:ml-4 shrink-0 mt-4 md:mt-0 font-bold group-hover:text-white transition-colors">
-                        {exp.date}
-                      </span>
-                    </div>
-
-                    <p className="text-base text-gray-400 leading-relaxed font-sans mb-6 pb-6 border-b border-dashed border-gray-800">
-                      {exp.description}
-                    </p>
-
-                    <ul className="space-y-3 font-mono text-sm text-gray-400">
-                      {exp.achievements.map((ach, i) => (
-                        <li key={i} className="flex items-start">
-                          <span className="text-[var(--color-primary-green)] mr-3 mt-1 text-[10px]">▶</span>
-                          <span className="leading-relaxed hover:text-[var(--color-primary-green)] transition-colors cursor-crosshair">{ach}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
